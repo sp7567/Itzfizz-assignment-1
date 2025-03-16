@@ -1,21 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 @import url("https://fonts.cdnfonts.com/css/druk-wide-bold");
 
-
 :root {
-  --background-color: black;
+  --background-color: #212121;
   --text-color: #fff;
   --effect-color: transparent;
   --line-color: #565664;
 }
 
-/*Navigation bar*/
+body {
+  margin: 0px;
+}
 
+/* Navigation bar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1a1a1a;
+  background-color: #212121;
   padding: 15px 50px;
 }
 
@@ -34,6 +36,7 @@
 
 .nav-links a {
   text-decoration: none;
+  font: Helvetica;
   color: #fff;
   font-size: 16px;
   position: relative;
@@ -49,12 +52,11 @@
   background-color: #fff;
 }
 
-
 .hero-section {
   background-color: var(--background-color);
   font-family: "Montserrat", sans-serif;
   width: 100%;
-  height: 1000px;
+  height: 100vh;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -72,14 +74,14 @@
 /* Media query to hide text on mobile */
 @media (max-width: 999px) {
   .text-container {
-    display: none; /* Hide text container on mobile */
+    display: none;
   }
 }
 
 .text {
   font-size: 5.9rem;
   font-family: "Druk Wide Bold", sans-serif;
-  color: #fff !important ;
+  color: #fff !important;
   -webkit-text-stroke: 0px;
   letter-spacing: -0.01em;
   position: relative;
@@ -118,15 +120,6 @@
   transition: all cubic-bezier(0.1, 0.5, 0.5, 1) 0.4s;
 }
 
-.text:hover .text-effect {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) !important;
-}
-
-.text:hover {
-  color: var(--hover-text-color) !important;
-  -webkit-text-stroke: 1px #fff;
-}
-
 /* Base styles for both mobile and desktop */
 .circular-layout {
   display: flex;
@@ -139,10 +132,10 @@
 /* Mobile styles (for window width less than 1000px) */
 @media (max-width: 999px) {
   .circular-layout {
-    display: flex; /* Ensure flexbox is enabled */
-    flex-direction: column; /* Stack items vertically */
+    display: flex;
+    flex-direction: column;
     height: auto;
-    gap: 40px; /* Space between items */
+    gap: 40px;
     perspective: 1000px;
   }
 
@@ -157,30 +150,35 @@
 /* Desktop styles (for window width 1000px and above) */
 @media (min-width: 1000px) {
   .circular-layout {
-    height: 600px; /* Fixed height for desktop layout */
+    height: 700px;
     perspective: 1000px;
   }
 
   .circular-item {
-    position: absolute; /* Position items absolutely */
+    position: absolute;
     width: 336px;
     height: 272px;
     transform: translate(-50%, -50%);
   }
 
   .circular-item:nth-child(1) {
-    top: 36%;
-    left: -7.6%;
+    top: 40%;
+    left: -18%;
   }
 
   .circular-item:nth-child(2) {
-    top: 16%;
-    left: 110%;
+    top: 25%;
+    left: 90%;
   }
 
   .circular-item:nth-child(3) {
-    top: 95%;
-    left: 44%;
+    top: 90%;
+    left: 5%;
+  }
+
+  .circular-item:nth-child(4) {
+    top: 70%;
+    left: 110%;
   }
 }
 
@@ -196,31 +194,22 @@
 
 .diagonal-line-1 {
   left: 0;
-  transform: rotate(33.3deg); /* Adjusted angle for 336x222 */
+  transform: rotate(33.3deg);
   transform-origin: top left;
 }
 
 .diagonal-line-2 {
   right: 0;
-  transform: rotate(-33.3deg); /* Adjusted angle for 336x222 */
+  transform: rotate(-33.3deg);
   transform-origin: top right;
 }
 
 .image-component {
   position: relative;
-  overflow: hidden;
+  overflow: visible !important;
   height: 100%;
   transform: all 0.5s ease;
-  transition: transform 0.3s ease; /* Added smooth transition */
-}
-
-.image-component:hover {
-  transform: translate3d(20px, -20px, 20px); /* Moves image 10px to the right */
-}
-
-.image-component:hover ~ .text-container .text {
-  color: transparent; /* Transparent fill */
-  -webkit-text-stroke: 1px #fff; /* White outline on hover */
+  transition: transform 0.3s ease;
 }
 
 .custom-component {
@@ -245,4 +234,23 @@
   right: 0;
   bottom: 0;
   box-sizing: border-box;
+}
+
+.magnetic-hover {
+  color: transparent !important;
+  -webkit-text-stroke: 1px #fff;
+  z-index: -1;
+}
+
+.image-content {
+  display: none;
+  position: relative;
+  top: -20px;
+  left: 80px;
+  height: 50px;
+  flex-direction: column; 
+  align-items: end; 
+  justify-content: right; 
+  background-color: transparent;
+  font: "Druk Wide Bold";
 }

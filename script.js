@@ -16,60 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 24);
     };
 
-    // Function to add or remove hover effects based on screen width
-    const toggleHoverEffects = () => {
-
-            // Add event listeners for hover effects
-            imageComponents.forEach((component, index) => {
-                component.addEventListener("mouseenter", handleMouseEnter.bind(null, index));
-                component.addEventListener("mouseleave", handleMouseLeave);
-            });
-    };
-
-    // Mouse enter handler
-    const handleMouseEnter = (index) => {
-        texts.forEach((text) => {
-            text.style.color = "#edf2fb";
-            text.style.textShadow =
-                "-1px -1px 0 #2D67D1, 1px -1px 0 #2D67D1, -1px 1px 0 #2D67D1, 1px 1px 0 #2D67D1";
-        });
-
-        // Set higher z-index for hovered image
-        circularLayout.style.zIndex = "30";
-        imageComponents[index].style.zIndex = "31";
-        textContainer.style.zIndex = "20";
-
-        // Replace content of other components with transparent stuff
-        imageComponents.forEach((otherComponent, otherIndex) => {
-            if (otherIndex !== index) {
-                otherComponent.style.zIndex = "29";
-                otherComponent.querySelector(".custom-component").style.display =
-                    "none";
-                otherComponent.querySelector(".transparent-content").style.display =
-                    "block";
-            }
-        });
-    };
-
-    // Mouse leave handler
-    const handleMouseLeave = () => {
-        texts.forEach((text) => {
-            text.style.color = "#2D67D1";
-            text.style.textShadow = "none";
-        });
-
-        // Reset z-index and styles for all components
-        circularLayout.style.zIndex = "10";
-        imageComponents.forEach((otherComponent) => {
-            otherComponent.style.zIndex = "10";
-            otherComponent.querySelector(".custom-component").style.display =
-                "flex"; // Show original content
-            otherComponent.querySelector(".transparent-content").style.display =
-                "none"; // Hide transparent content
-        });
-        textContainer.style.zIndex = "20";
-    };
-
     // Initial setup
     handleTextEffects();
     toggleHoverEffects();
@@ -79,4 +25,54 @@ document.addEventListener("DOMContentLoaded", () => {
         handleTextEffects();
         toggleHoverEffects();
     });
+});
+
+document.addEventListener('mousemove', function(e) {
+    const imageComponents = document.querySelectorAll('.image-component');
+    const text = document.querySelector('.text');
+    let isHoveringAnyImage = false;
+
+    imageComponents.forEach((component, index) => {
+        const rect = component.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
+            component.style.transform = `translate(${x * 0.7}px, ${y * 0.7}px)`;
+            text.style.setProperty('color', 'transparent', 'important');
+            text.style.setProperty('-webkit-text-stroke', '1px #ffffff40', 'important');
+            text.style.setProperty('z-index', '-999', 'important');
+
+            component.style.zIndex = "31";
+            const imageContent = component.querySelector('.image-content');
+            if (imageContent) {
+                imageContent.style.display = "flex";
+            }
+
+            imageComponents.forEach((otherComponent, otherIndex) => {
+                if (otherIndex !== index) {
+                    otherComponent.style.zIndex = "29";
+                    otherComponent.querySelector(".custom-component").style.display = "none";
+                    otherComponent.querySelector(".transparent-content").style.display = "block";
+                }
+            });
+
+            isHoveringAnyImage = true;
+        } else {
+            component.style.transform = 'translate(0, 0)';
+        }
+    });
+
+    if (!isHoveringAnyImage) {
+        text.style.removeProperty('color');
+        text.style.removeProperty('-webkit-text-stroke');
+        text.style.removeProperty('z-index');
+        
+
+        imageComponents.forEach((otherComponent) => {
+            otherComponent.style.zIndex = "10";
+            otherComponent.querySelector(".custom-component").style.display = "flex";
+            otherComponent.querySelector(".transparent-content").style.display = "none";
+        });
+    }
 });
