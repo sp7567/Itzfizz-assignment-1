@@ -120,7 +120,7 @@ body {
   transition: all cubic-bezier(0.1, 0.5, 0.5, 1) 0.4s;
 }
 
-/* Base styles for both mobile and desktop */
+
 .circular-layout {
   display: flex;
   justify-content: center;
@@ -129,7 +129,7 @@ body {
   width: 600px;
 }
 
-/* Mobile styles (for window width less than 1000px) */
+
 @media (max-width: 999px) {
   .circular-layout {
     display: flex;
@@ -147,7 +147,7 @@ body {
   }
 }
 
-/* Desktop styles (for window width 1000px and above) */
+
 @media (min-width: 1000px) {
   .circular-layout {
     height: 700px;

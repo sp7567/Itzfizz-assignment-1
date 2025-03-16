@@ -4,11 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const textContainer = document.querySelector(".text-container");
     const circularLayout = document.querySelector(".circular-layout");
 
-    // Function to handle text effects
+    
     const handleTextEffects = () => {
         if (window.innerWidth <= 999) {
             texts.forEach(text => text.classList.remove("text-emerged"));
-            return; // Exit early if we don't want any effects
+            return; 
         }
 
         setTimeout(() => {
@@ -16,11 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 24);
     };
 
-    // Initial setup
+  
     handleTextEffects();
     toggleHoverEffects();
 
-    // Add resize event listener to handle changes in screen size
     window.addEventListener("resize", () => {
         handleTextEffects();
         toggleHoverEffects();
