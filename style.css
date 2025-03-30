@@ -254,3 +254,126 @@ body {
   background-color: transparent;
   font: "Druk Wide Bold";
 }
+/* Video Section */
+.video-section {
+  padding: 50px; /* Added padding here */
+  background-color: #212121;
+}
+
+/* Video Container */
+.video-container {
+  width: 100%;
+  position: relative;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Video Styling */
+.hero-video {
+  width: 100%;
+  display: block;
+  background-color: #212121;
+}
+
+/* Custom Controls */
+.video-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 16px 16px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease;
+}
+.video-container:hover .video-controls {
+  opacity: 1;
+}
+/* Control Buttons */
+.control-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+  background-color: #212121;
+}
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+/* Seek Bar */
+.seek-bar {
+  flex-grow: 1;
+  height: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+}
+.seek-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Time Display */
+.time-display {
+  color: white;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  white-space: nowrap;
+  min-width: 120px;
+  text-align: center;
+}
+
+/* Volume Bar */
+.volume-bar {
+  width: 80px;
+  height: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+}
+
+.volume-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Settings Menu (optional) */
+.settings-menu {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.settings-menu.show {
+  display: block;
+}
